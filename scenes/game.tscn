@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://c2o41yc17ua0s"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_fw358"]
+[ext_resource type="Texture2D" uid="uid://coouupgmqj2l2" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites X2/Ships/spaceShips_002.png" id="2_g8my2"]
+[ext_resource type="Texture2D" uid="uid://7pv20v2dech1" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites/Ships/spaceShips_007.png" id="3_jxpes"]
+[ext_resource type="AudioStream" uid="uid://v5uf1fqx5w2" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites X2/Rocket parts/missile-explosion-168600.mp3" id="4_ug5mn"]
+[ext_resource type="AudioStream" uid="uid://dequjcf8noj30" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites X2/Rocket parts/hq-explosion-6288.mp3" id="5_3acly"]
+[ext_resource type="AudioStream" uid="uid://dr3qpspv1gduu" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites X2/Rocket parts/metal-design-explosion-13491.mp3" id="6_cvp2n"]
+[ext_resource type="PackedScene" uid="uid://c771nr8y5x3ed" path="res://scenes/hud.tscn" id="7_imu6w"]
+[ext_resource type="PackedScene" uid="uid://85gg3e6ok2xw" path="res://scenes/game_over_screen.tscn" id="8_ffeab"]
+[ext_resource type="Texture2D" uid="uid://bo75v4chpmrq" path="res://Scripts/kenney_space-shooter-extension (1)/photo-1608754482805-6f630357358b.jpeg" id="9_jbpg6"]
+[ext_resource type="PackedScene" uid="uid://bn12j6yt88ayw" path="res://scenes/player.tscn" id="10_diqn8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgw60"]
+radius = 92.0217
+
+[sub_resource type="PackedScene" id="PackedScene_u8clx"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Enemy", "scale", "collision_layer", "Area2D", "Sprite2D", "modulate", "visibility_layer", "texture", "CollisionShape2D", "shape", "VisibleOnScreenNotifier2D", "position"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 3, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 4, 4, -1, 4, 5, 2, 6, 3, 1, 4, 7, 5, 0, 0, 0, 8, 8, -1, 1, 9, 6, 0, 0, 0, 10, 10, -1, 2, 11, 7, 1, 8, 0),
+"variants": [Vector2(0.35, 0.35), 2, Color(0, 1, 0, 1), 21, Vector2(0.65, 0.65), ExtResource("2_g8my2"), SubResource("CircleShape2D_cgw60"), Vector2(9.53674e-07, -128), Vector2(2.5, 2.2)],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_ofit0"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("DiverEnemy", "Sprite2D", "texture", "CollisionShape2D", "VisibleOnScreenNotifier2D"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0, 0, 0, 2147483647, 262145, -1, 1, 2, 1, 0),
+"variants": [SubResource("PackedScene_u8clx"), ExtResource("3_jxpes")],
+"version": 3
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2itla"]
+emission_shape = 3
+emission_box_extents = Vector3(270, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+spread = 0.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+initial_velocity_min = -4000.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 3.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_fw358")
+enemy_scenes = Array[PackedScene]([SubResource("PackedScene_u8clx"), SubResource("PackedScene_ofit0")])
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Laser Sound" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("4_ug5mn")
+
+[node name="Hit Sound" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("5_3acly")
+
+[node name="Explode Sound" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource("6_cvp2n")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("7_imu6w")]
+
+[node name="GameOverScreen" parent="UILayer" instance=ExtResource("8_ffeab")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2.08165e-12, 960)
+
+[node name="Purple Stars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+position = Vector2(-9, -22)
+scale = Vector2(1, 1.01771)
+texture = ExtResource("9_jbpg6")
+centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 540, 960)
+
+[node name="StarParticleEffect" type="GPUParticles2D" parent="."]
+position = Vector2(270, -50)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_2itla")
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Player" parent="." instance=ExtResource("10_diqn8")]
+position = Vector2(269, 850)
+scale = Vector2(1.25, 1.25)
+speed = null
+rate_of_fire = null
+
+[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+position = Vector2(270, 850)
+
+[node name="Laser Container" type="Node2D" parent="."]
+
+[node name="Enemy Container" type="Node2D" parent="."]

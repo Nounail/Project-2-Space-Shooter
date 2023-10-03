@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c771nr8y5x3ed"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_4pvpw"]
+[ext_resource type="FontFile" uid="uid://fj2tcf7fxjff" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites/Effects/Orbitron Black.otf" id="2_g8njx"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4pvpw")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -22.0
+offset_right = 503.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_g8njx")
+theme_override_font_sizes/font_size = 35
+text = "Score: 9999"
+horizontal_alignment = 1
+vertical_alignment = 1

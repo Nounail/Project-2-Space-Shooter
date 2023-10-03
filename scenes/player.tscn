@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn12j6yt88ayw"]
+
+[ext_resource type="Texture2D" uid="uid://b27jaat8ics5b" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites/Ships/spaceShips_008.png" id="1_pfuk8"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_pp2aw"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_pp2aw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_pfuk8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(269, 850)
+polygon = PackedVector2Array(-294, -878, -242, -878, -230, -872, -236, -830, -268, -814, -302, -822, -306, -876)
+
+[node name="Muuzzle" type="Marker2D" parent="."]

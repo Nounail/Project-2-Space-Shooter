@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://85gg3e6ok2xw"]
+
+[ext_resource type="Script" path="res://Scripts/game_over_screen.gd" id="1_swuma"]
+[ext_resource type="FontFile" uid="uid://fj2tcf7fxjff" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites/Effects/Orbitron Black.otf" id="2_gskmt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_or13n"]
+bg_color = Color(0.156863, 0.6, 0.6, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_8m231"]
+line_spacing = 20.0
+font = ExtResource("2_gskmt")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ruu7c"]
+line_spacing = 20.0
+font = ExtResource("2_gskmt")
+font_size = 40
+font_color = Color(1, 0.517647, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cnkpu"]
+line_spacing = 20.0
+font = ExtResource("2_gskmt")
+font_size = 40
+font_color = Color(0, 1, 0.215686, 1)
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swuma")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.466667)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -216.0
+offset_right = 222.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_or13n")
+
+[node name="GameOver" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.5
+offset_top = 87.0
+offset_right = 166.5
+offset_bottom = 158.0
+grow_horizontal = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_8m231")
+
+[node name="HighScore" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -35.5
+offset_right = 184.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HI-Score : 9999"
+label_settings = SubResource("LabelSettings_ruu7c")
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -157.5
+offset_top = -190.0
+offset_right = 210.5
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Score : 9999"
+label_settings = SubResource("LabelSettings_cnkpu")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -69.5
+offset_top = -135.0
+offset_right = 65.5
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_gskmt")
+theme_override_font_sizes/font_size = 25
+text = "Retry
+"

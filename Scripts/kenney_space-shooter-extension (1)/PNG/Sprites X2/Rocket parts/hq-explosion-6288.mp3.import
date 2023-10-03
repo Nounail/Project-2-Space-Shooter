@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dequjcf8noj30"
+path="res://.godot/imported/hq-explosion-6288.mp3-d747b3ed3d118d3e583573c96e965d66.mp3str"
+
+[deps]
+
+source_file="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites X2/Rocket parts/hq-explosion-6288.mp3"
+dest_files=["res://.godot/imported/hq-explosion-6288.mp3-d747b3ed3d118d3e583573c96e965d66.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
