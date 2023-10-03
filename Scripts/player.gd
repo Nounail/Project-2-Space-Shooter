@@ -8,7 +8,7 @@ signal killed
 
 @onready var muzzle = $Muzzle
 
-var laser_scene = preload("res://Scene/laser.tscn")
+var laser_scene = preload("res://scenes/laser.tscn")
 
 var shoot_cd := false
 
@@ -28,7 +28,7 @@ func _physics_process(delta):
 	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 
 func shoot():
-	laser_shot.em it(laser_scene, muzzle.global_position)
+	laser_shot.emit(laser_scene, muzzle.global_position)
 
 func die():
 	killed.emit()

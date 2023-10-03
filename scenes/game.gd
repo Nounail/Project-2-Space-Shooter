@@ -61,7 +61,7 @@ func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	laser_container.add_child(laser)
-	
+	laser_sound.play()
 
 func _on_enemy_spawn_timer_timeout():
 	var e = enemy_scenes.pick_random().instantiate()
@@ -86,4 +86,3 @@ func _on_player_killed():
 	save_game()
 	await get_tree().create_timer(1.5).timeout
 	gos.visible = true
-

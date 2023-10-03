@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bos4o210ibact"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_uoc5q"]
+[ext_resource type="Texture2D" uid="uid://7pv20v2dech1" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites/Ships/spaceShips_007.png" id="2_vyivc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2sj3"]
+radius = 42.5793
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_uoc5q")
+hp = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_vyivc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_a2sj3")

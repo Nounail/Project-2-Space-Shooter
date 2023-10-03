@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2o41yc17ua0s"]
+[gd_scene load_steps=17 format=3 uid="uid://c2o41yc17ua0s"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_fw358"]
 [ext_resource type="Texture2D" uid="uid://coouupgmqj2l2" path="res://Scripts/kenney_space-shooter-extension (1)/PNG/Sprites X2/Ships/spaceShips_002.png" id="2_g8my2"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://85gg3e6ok2xw" path="res://scenes/game_over_screen.tscn" id="8_ffeab"]
 [ext_resource type="Texture2D" uid="uid://bo75v4chpmrq" path="res://Scripts/kenney_space-shooter-extension (1)/photo-1608754482805-6f630357358b.jpeg" id="9_jbpg6"]
 [ext_resource type="PackedScene" uid="uid://bn12j6yt88ayw" path="res://scenes/player.tscn" id="10_diqn8"]
+[ext_resource type="PackedScene" uid="uid://cvtiy01y1iq3e" path="res://scenes/laser.tscn" id="11_e10je"]
+[ext_resource type="PackedScene" uid="uid://bos4o210ibact" path="res://enemy.tscn" id="12_rptjx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgw60"]
 radius = 92.0217
@@ -59,13 +61,13 @@ enemy_scenes = Array[PackedScene]([SubResource("PackedScene_u8clx"), SubResource
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Laser Sound" type="AudioStreamPlayer2D" parent="Node2D"]
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("4_ug5mn")
 
-[node name="Hit Sound" type="AudioStreamPlayer2D" parent="Node2D"]
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Node2D"]
 stream = ExtResource("5_3acly")
 
-[node name="Explode Sound" type="AudioStreamPlayer" parent="Node2D"]
+[node name="ExplodeSound" type="AudioStreamPlayer" parent="Node2D"]
 stream = ExtResource("6_cvp2n")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
@@ -100,12 +102,16 @@ wait_time = 2.0
 [node name="Player" parent="." instance=ExtResource("10_diqn8")]
 position = Vector2(269, 850)
 scale = Vector2(1.25, 1.25)
-speed = null
-rate_of_fire = null
 
 [node name="PlayerSpawnPos" type="Marker2D" parent="."]
 position = Vector2(270, 850)
 
-[node name="Laser Container" type="Node2D" parent="."]
+[node name="LaserContainer" type="Node2D" parent="."]
 
-[node name="Enemy Container" type="Node2D" parent="."]
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="Laser" parent="." instance=ExtResource("11_e10je")]
+position = Vector2(267, 805)
+
+[node name="Enemy" parent="." instance=ExtResource("12_rptjx")]
+position = Vector2(309, 177)

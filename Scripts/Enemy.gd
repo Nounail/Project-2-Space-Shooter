@@ -1,4 +1,4 @@
-class_name Enemy extends Area2D
+class_name enemy extends Area2D
 
 signal killed(points)
 signal hit
